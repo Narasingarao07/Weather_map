@@ -18,7 +18,7 @@ app.get("/", function(req,res){
 
 app.post("/", function (req, res) {
     const query = req.body.cityName;
-    const appKey = "f04aaafa99e3861948a1622c8b6811d3#";
+    const appKey = process.env.API_KEY;
     const unit = "metric";
 
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=" + unit + "&appid=" + appKey;
@@ -88,7 +88,8 @@ app.post("/", function (req, res) {
 
 
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000,function(){
-    console.log("Server running successfully!..");
-})
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
